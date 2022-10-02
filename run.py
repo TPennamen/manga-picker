@@ -35,7 +35,7 @@ def get_jpg_file_and_next(manga: str, scan_number: int, page_number: int) :
         pass
 
 def merge_jpg_to_pdf(manga: str, scan_per_file: int, scan_end: int) -> None :
-    scan_start = 16
+    scan_start = 0
     scan_index = 0
     while scan_end > scan_start + scan_index  :
         repository = f'Scan {convert_int(scan_start + scan_index)}'
@@ -47,7 +47,7 @@ def merge_jpg_to_pdf(manga: str, scan_per_file: int, scan_end: int) -> None :
         images_to_merge = []
         while scan_index < scan_per_file and scan_end > scan_start + scan_index :
             try: 
-                images_to_merge += [ImageOps.grayscale(Image.open(f'./output/{manga}/{repository}/{file_name}').convert('RGB')) for file_name in listdir(f'./{manga}/{repository}')]
+                images_to_merge += [ImageOps.grayscale(Image.open(f'./output/{manga}/{repository}/{file_name}').convert('RGB')) for file_name in listdir(f'./output/{manga}/{repository}')]
             except FileNotFoundError :
                 pass
             scan_index+=1
