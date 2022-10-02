@@ -14,11 +14,5 @@ pip install -r requirements.txt
 ## How to use it
 
 ```
-python run.py --manga=<manga-name>
-```
-The result will be in output directory.
-You can also put an optional argument <b>agg</b> which make each pdf file an aggregation of agg number of scans in each pdf file.
-
-```
-python run.py --manga=<manga-name> --agg=2
+python run.py
 ```

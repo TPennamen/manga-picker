@@ -1,5 +1,3 @@
-from argparse import ArgumentParser
-
 from PIL import Image, ImageFile, ImageOps
 from os import mkdir, listdir, remove, removedirs
 from requests import get
@@ -69,22 +67,23 @@ def merge_jpg_to_pdf(manga: str, scan_per_file: int, scan_end: int) -> None :
 
 
 if __name__ == "__main__" :
-    parser = ArgumentParser(description="A program to pick from scansmangas.xyz all jpg files")
-    parser.add_argument("--manga", help="the manga wanted")
-    parser.add_argument("--agg", help="Aggregation volume per file")
 
-    args = parser.parse_args()
-    manga = args._get_kwargs()[1][1]
-    scan_per_file = int(args._get_kwargs()[0][1]) if args._get_kwargs()[0][1] is not None else 1
-
+    print("Manga wanted ?")
+    manga = input()
+    print("Aggregation number of wanted scans ? (default = 1)")
+    scan_per_file = input()
+    try :
+        scan_per_file = int(scan_per_file)
+    except ValueError :
+        scan_per_file = 1
+    
     if manga == None:
         raise Exception("A manga name must be precised")
     
     try :
         mkdir(f"output/{manga}")
-    except Exception as e:
+    except Exception :
         mkdir("output")
-        
         mkdir(f"output/{manga}")
         
     is_not_over = True
