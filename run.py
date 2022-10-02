@@ -34,7 +34,7 @@ def get_jpg_file_and_next(manga: str, scan_number: int, page_number: int) :
         raise NotFoundException(f"Page {page_number} not found", page_number)
     
     else :
-        print(response.status_code)
+        pass
 
 def merge_jpg_to_pdf(manga: str, scan_per_file: int, scan_end: int) -> None :
     scan_start = 16
@@ -75,8 +75,8 @@ if __name__ == "__main__" :
 
     args = parser.parse_args()
     manga = args._get_kwargs()[1][1]
-    scan_per_file = int(args._get_kwargs()[0][1]) if args._get_kwargs()[0][1] else 1
-    print(scan_per_file)
+    scan_per_file = int(args._get_kwargs()[0][1]) if args._get_kwargs()[0][1] is not None else 1
+
     if manga == None:
         raise Exception("A manga name must be precised")
     
